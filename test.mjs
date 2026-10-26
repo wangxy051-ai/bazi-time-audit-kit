@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {resolveLocalMinute} from './resolve-local-time.mjs';
+const gap=resolveLocalMinute('2024-03-10T02:30','America/New_York');
+assert.equal(gap.status,'gap');assert.equal(gap.candidates.length,0);
+const fold=resolveLocalMinute('2024-11-03T01:30','America/New_York');
+assert.equal(fold.status,'ambiguous');
+assert.deepEqual(fold.candidates,[{utc:'2024-11-03T05:30:00.000Z',offsetMinutes:-240},{utc:'2024-11-03T06:30:00.000Z',offsetMinutes:-300}]);
+const normal=resolveLocalMinute('2024-01-15T12:00','America/New_York');
+assert.equal(normal.status,'unique');assert.equal(normal.candidates[0].utc,'2024-01-15T17:00:00.000Z');
+assert.throws(()=>resolveLocalMinute('2024-02-30T12:00','America/New_York'));
+assert.throws(()=>resolveLocalMinute('2024-01-15T12:00','Not/A_Zone'));
+console.log('PASS: gap, repeated hour, ordinary time, invalid date, invalid zone');
