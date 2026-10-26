@@ -1,0 +1,5 @@
+case_id,local_datetime,iana_zone,occurrence,expected_status,utc_instant,utc_offset_minutes,solar_clock_observed,year_pillar_observed,month_pillar_observed,day_pillar_observed,hour_pillar_observed,provenance
+new_york_spring_gap,2024-03-10T02:30,America/New_York,none,gap,,,,,,,,Synthetic input rejected by site browser test on 2026-10-26
+new_york_fall_first,2024-11-03T01:30,America/New_York,first,ambiguous,2024-11-03T05:30:00Z,-240,2024-11-03T00:50,Jia Chen,Jia Xu,Xin Wei,Wu Zi,Site browser test 2026-10-26 with true solar time on and midnight boundary
+new_york_fall_second,2024-11-03T01:30,America/New_York,second,ambiguous,2024-11-03T06:30:00Z,-300,2024-11-03T01:50,Jia Chen,Jia Xu,Xin Wei,Ji Chou,Site browser test 2026-10-26 with true solar time on and midnight boundary
+new_york_standard_time,2024-01-15T12:00,America/New_York,only,unique,2024-01-15T17:00:00Z,-300,,,,,,Independent Node Intl regression fixture run 2026-10-26; no pillar claim
